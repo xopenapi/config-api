@@ -57,7 +57,29 @@ paths:
         "200":
           description: successful operation
           schema:
-            $ref: "#/definitions/APIResponse_Config"
+            $ref: "#/definitions/ConfigAPIResponse"
+  /config/{appId}/{key}:
+    get:
+      tags:
+        - config
+      summary: 根据key查找
+      operationId: findByAppIdAndKey
+      parameters:
+        - in: path
+          name: appId
+          required: true
+          type: string
+        - in: path
+          name: key
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ConfigAPIResponse"
 definitions:
   CreateConfigReq:
     title: CreateConfigReq
@@ -74,7 +96,7 @@ definitions:
         type: string
       value:
         type: string
-  APIResponse_Config:
+  ConfigAPIResponse:
     allOf:
       - $ref: "#/definitions/APIResponse"
       - type: object
