@@ -58,15 +58,15 @@ paths:
           description: successful operation
           schema:
             $ref: "#/definitions/ConfigAPIResponse"
-  /config/{appId}/{key}:
+  /config/{referId}/{key}:
     get:
       tags:
         - config
-      summary: 根据key查找
-      operationId: findByAppIdAndKey
+      summary: 根据referId 和 key查找
+      operationId: findByReferIdAndKey
       parameters:
         - in: path
-          name: appId
+          name: referId
           required: true
           type: string
         - in: path
