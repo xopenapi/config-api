@@ -1,0 +1,1355 @@
+openapi: "3.0.0"
+
+info:
+  description: "配置服务API"
+  version: 1.0.0
+  title: 配置服务API
+  license:
+    name: Apache-2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  - url: "https://api.lucfish.com/configuration/v1"
+
+paths:
+  /config:
+    post:
+      tags:
+        - "Config"
+      summary: "创建配置"
+      description: "创建配置"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateConfigReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+        - "Config"
+      summary: "更新配置"
+      description: "更新配置，需要全部的配置信息"
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/UpdateConfigReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+  /config/{id}:
+    get:
+      tags:
+        - "Config"
+      summary: "查询配置"
+      description: "查询配置通过配置ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "查询配置通过配置ID"
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+    delete:
+      tags:
+        - "Config"
+      summary: "删除配置"
+      description: "删除配置"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "删除配置"
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    description: "暂时未返回数据"
+        "405":
+          description: "Invalid input"
+  /config/batchRetrieve:
+    post:
+      tags:
+        - "Config"
+      summary: "批量查询配置"
+      description: "批量查询配置通过配置Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdsReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+    
+  /config/batchDelete:
+    post:
+      tags:
+        - "Config"
+      summary: "批量删除配置"
+      description: "批量删除配置通过配置Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdsReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    description: "暂时未返回数据"
+        "405":
+          description: "Invalid input"
+  /config/page:
+    post:
+      tags:
+        - "Config"
+      summary: "Page查询配置"
+      description: "Page查询配置"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PageQuery"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: object
+                    properties:
+                      pageNo:
+                        type: integer
+                        format: "int32"
+                        description: 页码
+                      pageSize:
+                        type: integer
+                        format: "int32"
+                        description: 翻页大小
+                      pageCount:
+                        type: integer
+                        format: "int32"
+                        description: 页数
+                      total:
+                        type: integer
+                        format: "int32"
+                        description: 总数量
+                      content:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+  /config/cursor:
+    post:
+      tags:
+        - "Config"
+      summary: "Cursor查询配置"
+      description: "Cursor查询配置"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CursorQuery"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: object
+                    properties:
+                      extra:
+                        type: object
+                        $ref: "#/components/schemas/CursorExtra"
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+
+
+  /config/retrieveByKey:
+    post:
+      tags:
+        - "Config"
+      summary: "查询配置"
+      description: "查询配置通过配置Key和资源ID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RetrieveConfigByKeyReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+  /config/batchRetrieveByKeys:
+    post:
+      tags:
+        - "Config"
+      summary: "查询配置"
+      description: "查询配置通过配置Keys和资源ID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchRetrieveByKeysReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items: 
+                      $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+
+  /config/batchRetrieveByResources:
+    post:
+      tags:
+        - "Config"
+      summary: "查询配置"
+      description: "查询配置通过配置GroupID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchRetrieveByResourcesReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items: 
+                      $ref: "#/components/schemas/Config"
+        "405":
+          description: "Invalid input"
+  
+  /configTemplate:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "创建配置模版"
+      description: "创建配置模版"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateConfigTemplateReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+        - "Config"
+      summary: "更新配置模版"
+      description: "更新配置模版，需要全部的配置模版信息"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateConfigTemplateReq"
+
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+
+  /configTemplate/{id}:
+    get:
+      tags:
+        - "ConfigTemplate"
+      summary: "查询配置模版"
+      description: "查询配置通过配置模版ID"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "查询配置通过配置ID"
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+    delete:
+      tags:
+        - "ConfigTemplate"
+      summary: "删除配置模版"
+      description: "删除配置模版"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "删除配置模版"
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    description: "暂时未返回数据"
+        "405":
+          description: "Invalid input"
+  /configTemplate/batchRetrieve:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "批量查询配置模版"
+      description: "批量查询配置模版通过配置Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdsReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+    
+  /configTemplate/batchDelete:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "批量删除配置模版"
+      description: "批量删除配置模版通过配置Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdsReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    description: "暂时未返回数据"
+        "405":
+          description: "Invalid input"
+  /configTemplate/page:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "Page查询配置模版"
+      description: "Page查询配置模版"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PageQuery"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: object
+                    properties:
+                      pageNo:
+                        type: integer
+                        format: "int32"
+                        description: 页码
+                      pageSize:
+                        type: integer
+                        format: "int32"
+                        description: 翻页大小
+                      pageCount:
+                        type: integer
+                        format: "int32"
+                        description: 页数
+                      total:
+                        type: integer
+                        format: "int32"
+                        description: 总数量
+                      content:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+  /configTemplate/cursor:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "Cursor查询配置模版"
+      description: "Cursor查询配置模版"
+      requestBody:
+        content:
+          application/json:
+            schema:
+             $ref: "#/components/schemas/CursorQuery"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: object
+                    properties:
+                      extra:
+                        type: object
+                        $ref: "#/components/schemas/CursorExtra"
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+  /configTemplate/retrieveByKey:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "查询配置模版"
+      description: "查询配置模版通过配置Key"
+      parameters:
+        - name: "key"
+          in: "query"
+          schema:
+            type: "string"
+            format: "string"
+          required: true
+          description: "主键Key"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+
+  /configTemplate/batchRetrieveByKeys:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "查询配置模版"
+      description: "查询配置通过配置Keys"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchRetrieveConfigTemplateByKeysReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items: 
+                      $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+  /configTemplate/batchRetrieveByGroup:
+    post:
+      tags:
+        - "ConfigTemplate"
+      summary: "查询配置模版"
+      description: "查询配置模版通过配置模版GroupID"
+      parameters:
+        - name: "groupName"
+          in: "query"
+          schema:
+            type: "string"
+            format: "string"
+          required: true
+          description: "分组标签名"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items: 
+                      $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+
+  /configGroup:
+    post:
+      tags:
+        - "ConfigGroup"
+      summary: "创建组"
+      description: "创建组"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateConfigGroupReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigGroup"
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+        - "ConfigGroup"
+      summary: "更新组"
+      description: "更新组，需要全部的组信息"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref:  "#/components/schemas/UpdateConfigGroupReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigGroup"
+        "405":
+          description: "Invalid input"
+  /configGroup/{id}:
+    get:
+      tags:
+        - "ConfigGroup"
+      summary: "查询组"
+      description: "查询组通过组ID"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "查询组通过组ID"
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigGroup"
+        "405":
+          description: "Invalid input"
+    delete:
+      tags:
+        - "ConfigGroup"
+      summary: "删除组"
+      description: "删除组"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "删除组"
+        required: true
+        schema:
+          type: string
+          format: string
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    description: "暂时未返回数据"
+        "405":
+          description: "Invalid input"
+
+  /configGroup/batchRetrieve:
+    post:
+      tags:
+        - "ConfigGroup"
+      summary: "批量查询组"
+      description: "批量查询组通过组Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdsReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ConfigGroup"
+        "405":
+          description: "Invalid input"
+    
+  /configGroup/batchDelete:
+    post:
+      tags:
+        - "ConfigGroup"
+      summary: "批量删除组"
+      description: "批量删除组通过组Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IdsReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    description: "暂时未返回数据"
+        "405":
+          description: "Invalid input"
+  /configGroup/page:
+    post:
+      tags:
+        - "ConfigGroup"
+      summary: "Page查询组"
+      description: "Page查询组"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PageQuery"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: object
+                    properties:
+                      pageNo:
+                        type: integer
+                        format: "int32"
+                        description: 页码
+                      pageSize:
+                        type: integer
+                        format: "int32"
+                        description: 翻页大小
+                      pageCount:
+                        type: integer
+                        format: "int32"
+                        description: 页数
+                      total:
+                        type: integer
+                        format: "int32"
+                        description: 总数量
+                      content:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ConfigGroup"
+        "405":
+          description: "Invalid input"
+  /configGroup/cursor:
+    post:
+      tags:
+        - "ConfigGroup"
+      summary: "Cursor查询组"
+      description: "Cursor查询组"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CursorQuery"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    type: object
+                    properties:
+                      extra:
+                        type: object
+                        $ref: "#/components/schemas/CursorExtra"
+                      items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ConfigGroup"
+        "405":
+          description: "Invalid input"
+  /configGroup/retrieveByName:
+    post:
+      tags:
+        - "ConfigGroup"
+      summary: "查询组"
+      description: "查询组通过Name"
+      parameters:
+        - name: "name"
+          in: "query"
+          schema:
+            type: "string"
+            format: "string"
+          required: true
+          description: "查询组通过Name"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  code:
+                    type: integer
+                    format: int64
+                  msg:
+                    type: string
+                    format: string
+                  data:
+                    $ref: "#/components/schemas/ConfigTemplate"
+        "405":
+          description: "Invalid input"
+
+security:
+  - ApiKey: []
+
+components:
+  securitySchemes:
+    ApiKey:
+      type: http
+      scheme: bearer
+      
+  schemas:
+    IdsReq:
+      type: object
+      properties: 
+        ids:
+          description: 配置ID列表
+          type: array
+          items: 
+            type: string
+            format: string
+
+    RetrieveConfigByKeyReq:
+      type: object
+      properties: 
+        key:
+          description: key
+          type: string
+          format: string
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+        
+    BatchRetrieveByKeysReq:
+      type: object
+      properties: 
+        keys:
+          description: keys
+          type: array
+          items: 
+            type: string   
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+
+    BatchRetrieveByResourcesReq:
+      type: object
+      properties: 
+        key:
+          description: key
+          type: string
+          format: string
+        resourceIds:
+          type: array
+          items: 
+            type: string
+          description: 资源ID组
+          
+    BatchRetrieveConfigTemplateByKeysReq:
+      type: object
+      properties: 
+        keys:
+          type: array
+          items: 
+            type: string 
+            
+    CursorQuery:
+      type: object
+      properties: 
+        filters:
+          description: 查询条件，传键值对
+          type: object
+        cursor:
+          description: 游标值
+          type: string
+          format: string
+        cursorSort:
+          description: 排序
+            $ref:"#/components/schemas/SortSpec"
+        size:
+          description: 大小
+          type: integer
+          format: int64
+        direction:
+          description: 查询方向，0表示游标前，1表示游标后
+          type: integer
+          format: byte 
+
+    CursorExtra:
+      type: object
+      properties: 
+        size:
+          description: 大小
+          type: integer
+          format: int64
+        direction:
+          description: 查询方向，0表示游标前，1表示游标后
+          type: integer
+          format: byte
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+          
+    CreateConfigReq: 
+      type: object
+      properties: 
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+        groupId:
+          type: string
+          format: string
+          description: 组ID
+        templateId:
+          type: string
+          format: string
+          description: 模版ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
+          
+    UpdateConfigReq:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        value:
+          type: object
+          description: json格式的键值对数据
+          
+    Config:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+        groupId:
+          type: string
+          format: string
+          description: 组ID
+        templateId:
+          type: string
+          format: string
+          description: 模版ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
+        ctime:
+          type: integer
+          format: int64
+          description: 创建时间，返回时间戳
+        mtime:
+          type: integer
+          format: int64
+          description: 更新时间，返回时间戳
+
+    CreateConfigGroupReq:
+      type: object
+      properties: 
+        name:
+          type: string 
+          format: string
+          description: 名称
+    
+    UpdateConfigGroupReq:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        name:
+          type: string 
+          description: 名称
+
+    ConfigGroup:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        name:
+          type: string 
+          format: string
+          description: 名称
+        ctime:
+          type: integer
+          format: int64
+          description: 创建时间，返回时间戳
+        mtime:
+          type: integer
+          format: int64
+          description: 更新时间，返回时间戳
+
+    CreateConfigTemplateReq:
+      type: object
+      properties: 
+        groupId:
+          type: string
+          format: string
+          description: 组ID
+        templateId:
+          type: string
+          format: string
+          description: 模版ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
+        
+    UpdateConfigTemplateReq:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        value:
+          type: object
+          description: json格式的键值对数据
+    
+    ConfigTemplate:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        groupId:
+          type: string
+          format: string
+          description: 组ID
+        templateId:
+          type: string
+          format: string
+          description: 模版ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
+        ctime:
+          type: integer
+          format: int64
+          description: 创建时间，返回时间戳
+        mtime:
+          type: integer
+          format: int64
+          description: 更新时间，返回时间戳
+      
+    PageQuery:
+      type: object
+      properties: 
+        filters: 
+          type: object
+          description: 查询条件，传键值对
+        pageNo: 
+          type: integer
+          format: int32
+          description: 页码
+        pageSize:
+          type: integer
+          format: int32
+          description: 每页数据量
+        sort:
+          type: array
+          items: 
+            $ref: "#/components/schemas/SortSpec"
+          description: 排序
+
+    SortSpec:
+      type: object
+      properties: 
+        property:
+          type: string
+          format: string
+          description: 排序字段
+        type:
+          type: string
+          format: string
+          description: 排序类型，0默认，1升序，2降序
+        ignoreCase:
+          type: string
+          format: string 
+          description: 是否忽略大小写
