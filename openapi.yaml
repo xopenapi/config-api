@@ -15,6 +15,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "createConfig"
       summary: "创建配置"
       description: "创建配置"
       requestBody:
@@ -28,6 +29,7 @@ paths:
           content:
             application/json:
               schema:
+                $ref: "#/components/schemas/Config"
                 type: object
                 properties:
                   code:
@@ -43,6 +45,7 @@ paths:
     put:
       tags:
         - "Config"
+      operationId: "updateConfig"
       summary: "更新配置"
       description: "更新配置，需要全部的配置信息"
       requestBody:
@@ -72,6 +75,7 @@ paths:
     get:
       tags:
         - "Config"
+      operationId: "getConfig"
       summary: "查询配置"
       description: "查询配置通过配置ID"
       parameters:
@@ -103,6 +107,7 @@ paths:
     delete:
       tags:
         - "Config"
+      operationId: "deleteConfig"
       summary: "删除配置"
       description: "删除配置"
       parameters:
@@ -135,6 +140,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "batchRetrieveConfigs"
       summary: "批量查询配置"
       description: "批量查询配置通过配置Id"
       requestBody:
@@ -167,6 +173,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "batchDeleteConfigs"
       summary: "批量删除配置"
       description: "批量删除配置通过配置Id"
       requestBody:
@@ -196,6 +203,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "pageConfigs"
       summary: "Page查询配置"
       description: "Page查询配置"
       requestBody:
@@ -246,6 +254,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "cursorConfigs"
       summary: "Cursor查询配置"
       description: "Cursor查询配置"
       requestBody:
@@ -285,6 +294,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "retrieveByKeyConfig"
       summary: "查询配置"
       description: "查询配置通过配置Key和资源ID"
       requestBody:
@@ -314,6 +324,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "batchRetrieveByKeysConfigs"
       summary: "查询配置"
       description: "查询配置通过配置Keys和资源ID"
       requestBody:
@@ -346,6 +357,7 @@ paths:
     post:
       tags:
         - "Config"
+      operationId: "batchRetrieveByResourcesConfigs"
       summary: "查询配置"
       description: "查询配置通过配置GroupID"
       requestBody:
@@ -378,6 +390,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "createConfigTemplate"
       summary: "创建配置模版"
       description: "创建配置模版"
       requestBody:
@@ -406,6 +419,7 @@ paths:
     put:
       tags:
         - "Config"
+      operationId: "updateConfigTemplate"
       summary: "更新配置模版"
       description: "更新配置模版，需要全部的配置模版信息"
       requestBody:
@@ -437,6 +451,7 @@ paths:
     get:
       tags:
         - "ConfigTemplate"
+      operationId: "getConfigTemplate"
       summary: "查询配置模版"
       description: "查询配置通过配置模版ID"
       parameters:
@@ -468,6 +483,7 @@ paths:
     delete:
       tags:
         - "ConfigTemplate"
+      operationId: "deleteConfigTemplate"
       summary: "删除配置模版"
       description: "删除配置模版"
       parameters:
@@ -500,6 +516,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "batchRetrieveConfigTemplates"
       summary: "批量查询配置模版"
       description: "批量查询配置模版通过配置Id"
       requestBody:
@@ -532,6 +549,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "batchDeleteConfigTemplates"
       summary: "批量删除配置模版"
       description: "批量删除配置模版通过配置Id"
       requestBody:
@@ -561,6 +579,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "pageConfigTemplate"
       summary: "Page查询配置模版"
       description: "Page查询配置模版"
       requestBody:
@@ -611,6 +630,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "cursorConfigTemplates"
       summary: "Cursor查询配置模版"
       description: "Cursor查询配置模版"
       requestBody:
@@ -648,6 +668,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "retrieveByKeyConfigTemplate"
       summary: "查询配置模版"
       description: "查询配置模版通过配置Key"
       parameters:
@@ -681,6 +702,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "batchRetrieveByKeysConfigTemplates"
       summary: "查询配置模版"
       description: "查询配置通过配置Keys"
       requestBody:
@@ -712,6 +734,7 @@ paths:
     post:
       tags:
         - "ConfigTemplate"
+      operationId: "batchRetrieveByGroupConfigTemplates"
       summary: "查询配置模版"
       description: "查询配置模版通过配置模版GroupID"
       parameters:
@@ -747,6 +770,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
+      operationId: "createGroup"
       summary: "创建组"
       description: "创建组"
       requestBody:
@@ -775,6 +799,7 @@ paths:
     put:
       tags:
         - "ConfigGroup"
+      operationId: "updateGroup"
       summary: "更新组"
       description: "更新组，需要全部的组信息"
       requestBody:
@@ -804,6 +829,7 @@ paths:
     get:
       tags:
         - "ConfigGroup"
+      operationId: "getGroup"
       summary: "查询组"
       description: "查询组通过组ID"
       parameters:
@@ -835,6 +861,7 @@ paths:
     delete:
       tags:
         - "ConfigGroup"
+      operationId: "deleteGroup"
       summary: "删除组"
       description: "删除组"
       parameters:
@@ -868,6 +895,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
+      operationId: "batchRetrieveGroups"
       summary: "批量查询组"
       description: "批量查询组通过组Id"
       requestBody:
@@ -900,6 +928,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
+      operationId: "batchDeleteGroups"
       summary: "批量删除组"
       description: "批量删除组通过组Id"
       requestBody:
@@ -929,6 +958,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
+      operationId: "pageGroups"
       summary: "Page查询组"
       description: "Page查询组"
       requestBody:
@@ -979,6 +1009,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
+      operationId: "cursorGroups"
       summary: "Cursor查询组"
       description: "Cursor查询组"
       requestBody:
@@ -1016,6 +1047,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
+      operationId: "retrieveByNameGroup" 
       summary: "查询组"
       description: "查询组通过Name"
       parameters:
@@ -1041,7 +1073,7 @@ paths:
                     type: string
                     format: string
                   data:
-                    $ref: "#/components/schemas/ConfigTemplate"
+                    $ref: "#/components/schemas/ConfigGroup"
         "405":
           description: "Invalid input"
 
@@ -1076,8 +1108,33 @@ components:
           type: string
           format: string
           description: 资源ID
+    
+    RetrieveConfigByKeyResponse:
+      type: object
+      properties: 
+        key:
+          description: key
+          type: string
+          format: string
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
         
     BatchRetrieveByKeysReq:
+      type: object
+      properties: 
+        keys:
+          description: keys
+          type: array
+          items: 
+            type: string   
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+
+    BatchRetrieveByKeysResponse:
       type: object
       properties: 
         keys:
@@ -1102,8 +1159,29 @@ components:
           items: 
             type: string
           description: 资源ID组
+    
+    BatchRetrieveByResourcesResponse:
+      type: object
+      properties: 
+        key:
+          description: key
+          type: string
+          format: string
+        resourceIds:
+          type: array
+          items: 
+            type: string
+          description: 资源ID组
           
     BatchRetrieveConfigTemplateByKeysReq:
+      type: object
+      properties: 
+        keys:
+          type: array
+          items: 
+            type: string 
+    
+    BatchRetrieveConfigTemplateByKeysResponse:
       type: object
       properties: 
         keys:
@@ -1171,8 +1249,42 @@ components:
         value:
           type: object
           description: json格式的键值对数据
+    
+    CreateConfigResponse: 
+      type: object
+      properties: 
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+        groupId:
+          type: string
+          format: string
+          description: 组ID
+        templateId:
+          type: string
+          format: string
+          description: 模版ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
           
     UpdateConfigReq:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        value:
+          type: object
+          description: json格式的键值对数据
+
+    UpdateConfigResponse:
       type: object
       properties: 
         id:
@@ -1225,8 +1337,27 @@ components:
           type: string 
           format: string
           description: 名称
+
+    CreateConfigGroupResponse:
+      type: object
+      properties: 
+        name:
+          type: string 
+          format: string
+          description: 名称
     
     UpdateConfigGroupReq:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        name:
+          type: string 
+          description: 名称
+
+    UpdateConfigGroupResponse:
       type: object
       properties: 
         id:
@@ -1275,8 +1406,38 @@ components:
         value:
           type: object
           description: json格式的键值对数据
+
+    CreateConfigTemplateResponse:
+      type: object
+      properties: 
+        groupId:
+          type: string
+          format: string
+          description: 组ID
+        templateId:
+          type: string
+          format: string
+          description: 模版ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
         
     UpdateConfigTemplateReq:
+      type: object
+      properties: 
+        id:
+          type: string
+          format: string
+          description: 配置ID
+        value:
+          type: object
+          description: json格式的键值对数据
+    
+    UpdateConfigTemplateResponse:
       type: object
       properties: 
         id:
