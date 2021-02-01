@@ -745,16 +745,13 @@ components:
     RetrieveConfigByKeyReq:
       type: object
       properties:
-        code:
-          type: integer
-          format: int64
-        msg:
+        resourceId:
           type: string
           format: string
-        data:
-          type: array
-          items:
-            $ref: "#/components/schemas/Config"
+        key:
+          type: string
+          format: string
+        
     
     RetrieveConfigByKeyResponse:
       type: object
