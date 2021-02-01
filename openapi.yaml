@@ -29,17 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Config"
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/CreateConfigResponse"
         "405":
           description: "Invalid input"
     put:
@@ -59,18 +49,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/UpdateConfigResponse"
         "405":
           description: "Invalid input"
+
   /config/{id}:
     get:
       tags:
@@ -92,18 +74,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/GetConfigResponse"
         "405":
           description: "Invalid input"
+
     delete:
       tags:
         - "Config"
@@ -124,18 +98,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    description: "暂时未返回数据"
+                $ref: "#/components/schemas/DeleteResponse"
         "405":
           description: "Invalid input"
+
   /config/batchRetrieve:
     post:
       tags:
@@ -154,18 +120,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/BatchRetrieveConfigsResponse"
         "405":
           description: "Invalid input"
     
@@ -187,18 +142,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    description: "暂时未返回数据"
+                $ref: "#/components/schemas/DeleteResponse"
         "405":
           description: "Invalid input"
+
   /config/page:
     post:
       tags:
@@ -217,37 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: object
-                    properties:
-                      pageNo:
-                        type: integer
-                        format: "int32"
-                        description: 页码
-                      pageSize:
-                        type: integer
-                        format: "int32"
-                        description: 翻页大小
-                      pageCount:
-                        type: integer
-                        format: "int32"
-                        description: 页数
-                      total:
-                        type: integer
-                        format: "int32"
-                        description: 总数量
-                      content:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/PageConfigsResponse"
         "405":
           description: "Invalid input"
   /config/cursor:
@@ -268,24 +185,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: object
-                    properties:
-                      extra:
-                        type: object
-                        $ref: "#/components/schemas/CursorExtra"
-                      items:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/CursorConfigsResponse"
         "405":
           description: "Invalid input"
 
@@ -308,18 +208,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/RetrieveConfigByKeyResponse"
         "405":
           description: "Invalid input"
+
   /config/batchRetrieveByKeys:
     post:
       tags:
@@ -338,18 +230,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items: 
-                      $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/BatchRetrieveConfigsByKeysResponse"
         "405":
           description: "Invalid input"
 
@@ -371,18 +252,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items: 
-                      $ref: "#/components/schemas/Config"
+                $ref: "#/components/schemas/BatchRetrieveConfigsByResourcesResponse"
         "405":
           description: "Invalid input"
   
@@ -404,16 +274,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/CreateConfigTemplateResponse"
         "405":
           description: "Invalid input"
     put:
@@ -434,16 +295,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/UpdateConfigTemplateResponse"
         "405":
           description: "Invalid input"
 
@@ -468,18 +320,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/GetConfigTemplateResponse"
         "405":
           description: "Invalid input"
+
     delete:
       tags:
         - "ConfigTemplate"
@@ -500,18 +344,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    description: "暂时未返回数据"
+                $ref: "#/components/schemas/DeleteResponse"
         "405":
           description: "Invalid input"
+
   /configTemplate/batchRetrieve:
     post:
       tags:
@@ -530,18 +366,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/BatchRetrieveConfigTemplatesResponse"
         "405":
           description: "Invalid input"
     
@@ -563,16 +388,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    description: "暂时未返回数据"
+                $ref: "#/components/schemas/DeleteResponse"
         "405":
           description: "Invalid input"
   /configTemplate/page:
@@ -593,39 +409,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: object
-                    properties:
-                      pageNo:
-                        type: integer
-                        format: "int32"
-                        description: 页码
-                      pageSize:
-                        type: integer
-                        format: "int32"
-                        description: 翻页大小
-                      pageCount:
-                        type: integer
-                        format: "int32"
-                        description: 页数
-                      total:
-                        type: integer
-                        format: "int32"
-                        description: 总数量
-                      content:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/PageConfigTemplatesResponse"
         "405":
           description: "Invalid input"
+
   /configTemplate/cursor:
     post:
       tags:
@@ -644,26 +431,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: object
-                    properties:
-                      extra:
-                        type: object
-                        $ref: "#/components/schemas/CursorExtra"
-                      items:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/CursorConfigTemplatesResponse"
         "405":
           description: "Invalid input"
+
   /configTemplate/retrieveByKey:
     post:
       tags:
@@ -685,16 +456,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/RetrieveConfigTemplateByKeyResponse"
         "405":
           description: "Invalid input"
 
@@ -716,20 +478,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items: 
-                      $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/BatchRetrieveConfigTemplatesByKeysResponse"
         "405":
           description: "Invalid input"
+
   /configTemplate/batchRetrieveByGroup:
     post:
       tags:
@@ -751,18 +503,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items: 
-                      $ref: "#/components/schemas/ConfigTemplate"
+                $ref: "#/components/schemas/BatchRetrieveConfigTemplatesByGroupResponse"
         "405":
           description: "Invalid input"
 
@@ -784,18 +525,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/CreateConfigGroupResponse"
         "405":
           description: "Invalid input"
+
     put:
       tags:
         - "ConfigGroup"
@@ -813,18 +546,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/UpdateConfigGroupResponse"
         "405":
           description: "Invalid input"
+
   /configGroup/{id}:
     get:
       tags:
@@ -846,18 +571,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/GetConfigGroupResponse"
         "405":
           description: "Invalid input"
+
     delete:
       tags:
         - "ConfigGroup"
@@ -878,16 +595,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    description: "暂时未返回数据"
+                $ref: "#/components/schemas/DeleteResponse"
         "405":
           description: "Invalid input"
 
@@ -909,18 +617,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/BatchRetrieveConfigGroupsResponse"
         "405":
           description: "Invalid input"
     
@@ -942,18 +639,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    description: "暂时未返回数据"
+                $ref: "#/components/schemas/DeleteResponse"
         "405":
           description: "Invalid input"
+
   /configGroup/page:
     post:
       tags:
@@ -972,39 +661,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: object
-                    properties:
-                      pageNo:
-                        type: integer
-                        format: "int32"
-                        description: 页码
-                      pageSize:
-                        type: integer
-                        format: "int32"
-                        description: 翻页大小
-                      pageCount:
-                        type: integer
-                        format: "int32"
-                        description: 页数
-                      total:
-                        type: integer
-                        format: "int32"
-                        description: 总数量
-                      content:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/PageConfigGroupsResponse"
         "405":
           description: "Invalid input"
+
   /configGroup/cursor:
     post:
       tags:
@@ -1023,26 +683,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    type: object
-                    properties:
-                      extra:
-                        type: object
-                        $ref: "#/components/schemas/CursorExtra"
-                      items:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/CursorConfigGroupsResponse"
         "405":
           description: "Invalid input"
+
   /configGroup/retrieveByName:
     post:
       tags:
@@ -1064,16 +708,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: 
-                  code:
-                    type: integer
-                    format: int64
-                  msg:
-                    type: string
-                    format: string
-                  data:
-                    $ref: "#/components/schemas/ConfigGroup"
+                $ref: "#/components/schemas/RetrieveConfigGroupByNameResponse"
         "405":
           description: "Invalid input"
 
@@ -1097,29 +732,41 @@ components:
             type: string
             format: string
 
-    RetrieveConfigByKeyReq:
+    BatchRetrieveConfigsResponse:
       type: object
       properties: 
-        key:
-          description: key
+        ids:
+          description: 配置ID列表
+          type: array
+          items: 
+            type: string
+            format: string
+
+    RetrieveConfigByKeyReq:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-        resourceId:
-          type: string
-          format: string
-          description: 资源ID
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Config"
     
     RetrieveConfigByKeyResponse:
       type: object
       properties: 
-        key:
-          description: key
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-        resourceId:
-          type: string
-          format: string
-          description: 资源ID
+        data:
+          $ref: "#/components/schemas/Config"
         
     BatchRetrieveByKeysReq:
       type: object
@@ -1133,19 +780,20 @@ components:
           type: string
           format: string
           description: 资源ID
-
-    BatchRetrieveByKeysResponse:
+    
+    BatchRetrieveConfigsByKeysResponse:
       type: object
       properties: 
-        keys:
-          description: keys
-          type: array
-          items: 
-            type: string   
-        resourceId:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-          description: 资源ID
+        data:
+          type: array
+          items: 
+            $ref: "#/components/schemas/Config"
 
     BatchRetrieveByResourcesReq:
       type: object
@@ -1160,19 +808,20 @@ components:
             type: string
           description: 资源ID组
     
-    BatchRetrieveByResourcesResponse:
+    BatchRetrieveConfigsByResourcesResponse:
       type: object
       properties: 
-        key:
-          description: key
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-        resourceIds:
+        data:
           type: array
           items: 
-            type: string
-          description: 资源ID组
-          
+            $ref: "#/components/schemas/Config"
+    
     BatchRetrieveConfigTemplateByKeysReq:
       type: object
       properties: 
@@ -1252,27 +901,16 @@ components:
     
     CreateConfigResponse: 
       type: object
-      properties: 
-        resourceId:
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-          description: 资源ID
-        groupId:
-          type: string
-          format: string
-          description: 组ID
-        templateId:
-          type: string
-          format: string
-          description: 模版ID
-        key:
-          type: string
-          format: string
-          description: 对应的字段名
-        value:
-          type: object
-          description: json格式的键值对数据
-          
+        data:
+          $ref: "#/components/schemas/Config"
+
     UpdateConfigReq:
       type: object
       properties: 
@@ -1286,15 +924,81 @@ components:
 
     UpdateConfigResponse:
       type: object
-      properties: 
-        id:
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-          description: 配置ID
-        value:
+        data:
+          $ref: "#/components/schemas/Config"
+    
+    GetConfigResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          $ref: "#/components/schemas/Config"
+    
+    PageConfigsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
           type: object
-          description: json格式的键值对数据
-          
+          properties:
+            pageNo:
+              type: integer
+              format: "int32"
+              description: 页码
+            pageSize:
+              type: integer
+              format: "int32"
+              description: 翻页大小
+            pageCount:
+              type: integer
+              format: "int32"
+              description: 页数
+            total:
+              type: integer
+              format: "int32"
+              description: 总数量
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/Config"
+    
+    CursorConfigsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: object
+          properties:
+            extra:
+              type: object
+              $ref: "#/components/schemas/CursorExtra"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/Config"
+
     Config:
       type: object
       properties: 
@@ -1340,11 +1044,15 @@ components:
 
     CreateConfigGroupResponse:
       type: object
-      properties: 
-        name:
-          type: string 
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
           format: string
-          description: 名称
+        data:
+          $ref: "#/components/schemas/ConfigGroup"
     
     UpdateConfigGroupReq:
       type: object
@@ -1359,14 +1067,106 @@ components:
 
     UpdateConfigGroupResponse:
       type: object
-      properties: 
-        id:
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-          description: 配置ID
-        name:
-          type: string 
-          description: 名称
+        data:
+          $ref: "#/components/schemas/ConfigGroup"
+
+    GetConfigGroupResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          $ref: "#/components/schemas/ConfigGroup"
+
+    BatchRetrieveConfigGroupsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigGroup"
+
+    PageConfigGroupsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: object
+          properties:
+            pageNo:
+              type: integer
+              format: "int32"
+              description: 页码
+            pageSize:
+              type: integer
+              format: "int32"
+              description: 翻页大小
+            pageCount:
+              type: integer
+              format: "int32"
+              description: 页数
+            total:
+              type: integer
+              format: "int32"
+              description: 总数量
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/ConfigGroup"
+
+    CursorConfigGroupsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: object
+          properties:
+            extra:
+              type: object
+              $ref: "#/components/schemas/CursorExtra"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/ConfigGroup"
+
+    RetrieveConfigGroupByNameResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          $ref: "#/components/schemas/ConfigGroup"
 
     ConfigGroup:
       type: object
@@ -1409,22 +1209,15 @@ components:
 
     CreateConfigTemplateResponse:
       type: object
-      properties: 
-        groupId:
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-          description: 组ID
-        templateId:
-          type: string
-          format: string
-          description: 模版ID
-        key:
-          type: string
-          format: string
-          description: 对应的字段名
-        value:
-          type: object
-          description: json格式的键值对数据
+        data:
+          $ref: "#/components/schemas/ConfigTemplate"
         
     UpdateConfigTemplateReq:
       type: object
@@ -1439,15 +1232,135 @@ components:
     
     UpdateConfigTemplateResponse:
       type: object
-      properties: 
-        id:
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
           type: string
           format: string
-          description: 配置ID
-        value:
-          type: object
-          description: json格式的键值对数据
+        data:
+          $ref: "#/components/schemas/ConfigTemplate"
     
+    GetConfigTemplateResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          $ref: "#/components/schemas/ConfigTemplate"
+
+    BatchRetrieveConfigTemplatesResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigTemplate"
+    
+    PageConfigTemplatesResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: object
+          properties:
+            pageNo:
+              type: integer
+              format: "int32"
+              description: 页码
+            pageSize:
+              type: integer
+              format: "int32"
+              description: 翻页大小
+            pageCount:
+              type: integer
+              format: "int32"
+              description: 页数
+            total:
+              type: integer
+              format: "int32"
+              description: 总数量
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/ConfigTemplate"
+
+    CursorConfigTemplatesResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: object
+          properties:
+            extra:
+              type: object
+              $ref: "#/components/schemas/CursorExtra"
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/ConfigTemplate"
+    
+    RetrieveConfigTemplateByKeyResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          $ref: "#/components/schemas/ConfigTemplate"
+    
+    BatchRetrieveConfigTemplatesByKeysResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: array
+          items: 
+            $ref: "#/components/schemas/ConfigTemplate"
+
+    BatchRetrieveConfigTemplatesByGroupResponse:
+      type: object
+      properties: 
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          type: array
+          items: 
+            $ref: "#/components/schemas/ConfigTemplate"
+
     ConfigTemplate:
       type: object
       properties: 
@@ -1514,3 +1427,16 @@ components:
           type: string
           format: string 
           description: 是否忽略大小写
+
+    DeleteResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          description: "暂时未返回数据"           
+
