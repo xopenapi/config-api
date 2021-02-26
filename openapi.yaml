@@ -751,7 +751,6 @@ components:
         key:
           type: string
           format: string
-        
     
     RetrieveConfigByKeyResponse:
       type: object
@@ -800,11 +799,12 @@ components:
           type: string
           format: string
         resourceIds:
+          description: 资源ID组
           type: array
           items: 
             type: string
-          description: 资源ID组
-    
+            format: string
+          
     BatchRetrieveConfigsByResourcesResponse:
       type: object
       properties: 
