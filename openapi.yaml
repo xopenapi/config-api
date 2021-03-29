@@ -41,7 +41,7 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: 
+            schema:
               $ref: "#/components/schemas/UpdateConfigReq"
       responses:
         "200":
@@ -85,13 +85,13 @@ paths:
       summary: "删除配置"
       description: "删除配置"
       parameters:
-      - name: "id"
-        in: "path"
-        description: "删除配置"
-        required: true
-        schema:
-          type: string
-          format: string
+        - name: "id"
+          in: "path"
+          description: "删除配置"
+          required: true
+          schema:
+            type: string
+            format: string
       responses:
         "200":
           description: "successful operation"
@@ -123,7 +123,7 @@ paths:
                 $ref: "#/components/schemas/BatchRetrieveConfigsResponse"
         "405":
           description: "Invalid input"
-    
+
   /config/batchDelete:
     post:
       tags:
@@ -189,6 +189,43 @@ paths:
         "405":
           description: "Invalid input"
 
+  /config/getByKey:
+    post:
+      tags:
+        - "Config"
+      operationId: get
+      description: 查询配置
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RetrieveConfigByKeyReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RetrieveConfigByKeyResponse"
+
+  /config/upsert:
+    post:
+      tags:
+        - "Config"
+      operationId: "upsertConfig"
+      description: 创建或更新配置
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpsertConfigReq"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpsertConfigResponse"
 
   /config/retrieveByKey:
     post:
@@ -255,7 +292,7 @@ paths:
                 $ref: "#/components/schemas/BatchRetrieveConfigsByResourcesResponse"
         "405":
           description: "Invalid input"
-  
+
   /configTemplate:
     post:
       tags:
@@ -307,13 +344,13 @@ paths:
       summary: "查询配置模版"
       description: "查询配置通过配置模版ID"
       parameters:
-      - name: "id"
-        in: "path"
-        description: "查询配置通过配置ID"
-        required: true
-        schema:
-          type: string
-          format: string
+        - name: "id"
+          in: "path"
+          description: "查询配置通过配置ID"
+          required: true
+          schema:
+            type: string
+            format: string
       responses:
         "200":
           description: "successful operation"
@@ -331,13 +368,13 @@ paths:
       summary: "删除配置模版"
       description: "删除配置模版"
       parameters:
-      - name: "id"
-        in: "path"
-        description: "删除配置模版"
-        required: true
-        schema:
-          type: string
-          format: string
+        - name: "id"
+          in: "path"
+          description: "删除配置模版"
+          required: true
+          schema:
+            type: string
+            format: string
       responses:
         "200":
           description: "successful operation"
@@ -369,7 +406,7 @@ paths:
                 $ref: "#/components/schemas/BatchRetrieveConfigTemplatesResponse"
         "405":
           description: "Invalid input"
-    
+
   /configTemplate/batchDelete:
     post:
       tags:
@@ -424,7 +461,7 @@ paths:
         content:
           application/json:
             schema:
-             $ref: "#/components/schemas/CursorQuery"
+              $ref: "#/components/schemas/CursorQuery"
       responses:
         "200":
           description: "successful operation"
@@ -539,7 +576,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref:  "#/components/schemas/UpdateConfigGroupReq"
+              $ref: "#/components/schemas/UpdateConfigGroupReq"
       responses:
         "200":
           description: "successful operation"
@@ -558,13 +595,13 @@ paths:
       summary: "查询组"
       description: "查询组通过组ID"
       parameters:
-      - name: "id"
-        in: "path"
-        description: "查询组通过组ID"
-        required: true
-        schema:
-          type: string
-          format: string
+        - name: "id"
+          in: "path"
+          description: "查询组通过组ID"
+          required: true
+          schema:
+            type: string
+            format: string
       responses:
         "200":
           description: "successful operation"
@@ -582,13 +619,13 @@ paths:
       summary: "删除组"
       description: "删除组"
       parameters:
-      - name: "id"
-        in: "path"
-        description: "删除组"
-        required: true
-        schema:
-          type: string
-          format: string
+        - name: "id"
+          in: "path"
+          description: "删除组"
+          required: true
+          schema:
+            type: string
+            format: string
       responses:
         "200":
           description: "successful operation"
@@ -620,7 +657,7 @@ paths:
                 $ref: "#/components/schemas/BatchRetrieveConfigGroupsResponse"
         "405":
           description: "Invalid input"
-    
+
   /configGroup/batchDelete:
     post:
       tags:
@@ -691,7 +728,7 @@ paths:
     post:
       tags:
         - "ConfigGroup"
-      operationId: "retrieveByNameGroup" 
+      operationId: "retrieveByNameGroup"
       summary: "查询组"
       description: "查询组通过Name"
       parameters:
@@ -720,25 +757,25 @@ components:
     ApiKey:
       type: http
       scheme: bearer
-      
+
   schemas:
     IdsReq:
       type: object
-      properties: 
+      properties:
         ids:
           description: 配置ID列表
           type: array
-          items: 
+          items:
             type: string
             format: string
 
     BatchRetrieveConfigsResponse:
       type: object
-      properties: 
+      properties:
         ids:
           description: 配置ID列表
           type: array
-          items: 
+          items:
             type: string
             format: string
 
@@ -751,10 +788,10 @@ components:
         key:
           type: string
           format: string
-    
+
     RetrieveConfigByKeyResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -763,23 +800,23 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/Config"
-        
+
     BatchRetrieveByKeysReq:
       type: object
-      properties: 
+      properties:
         keys:
           description: keys
           type: array
-          items: 
-            type: string   
+          items:
+            type: string
         resourceId:
           type: string
           format: string
           description: 资源ID
-    
+
     BatchRetrieveConfigsByKeysResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -788,12 +825,12 @@ components:
           format: string
         data:
           type: array
-          items: 
+          items:
             $ref: "#/components/schemas/Config"
 
     BatchRetrieveByResourcesReq:
       type: object
-      properties: 
+      properties:
         key:
           description: key
           type: string
@@ -801,13 +838,13 @@ components:
         resourceIds:
           description: 资源ID组
           type: array
-          items: 
+          items:
             type: string
             format: string
-          
+
     BatchRetrieveConfigsByResourcesResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -816,28 +853,28 @@ components:
           format: string
         data:
           type: array
-          items: 
+          items:
             $ref: "#/components/schemas/Config"
-    
+
     BatchRetrieveConfigTemplateByKeysReq:
       type: object
-      properties: 
+      properties:
         keys:
           type: array
-          items: 
-            type: string 
-    
+          items:
+            type: string
+
     BatchRetrieveConfigTemplateByKeysResponse:
       type: object
-      properties: 
+      properties:
         keys:
           type: array
-          items: 
-            type: string 
-            
+          items:
+            type: string
+
     CursorQuery:
       type: object
-      properties: 
+      properties:
         filters:
           description: 查询条件，传键值对
           type: object
@@ -855,11 +892,11 @@ components:
         direction:
           description: 查询方向，0表示游标前，1表示游标后
           type: integer
-          format: byte 
+          format: byte
 
     CursorExtra:
       type: object
-      properties: 
+      properties:
         size:
           description: 大小
           type: integer
@@ -872,10 +909,10 @@ components:
           type: string
           format: string
           description: 资源ID
-          
-    CreateConfigReq: 
+
+    CreateConfigReq:
       type: object
-      properties: 
+      properties:
         resourceId:
           type: string
           format: string
@@ -895,8 +932,8 @@ components:
         value:
           type: object
           description: json格式的键值对数据
-    
-    CreateConfigResponse: 
+
+    CreateConfigResponse:
       type: object
       properties:
         code:
@@ -910,7 +947,7 @@ components:
 
     UpdateConfigReq:
       type: object
-      properties: 
+      properties:
         id:
           type: string
           format: string
@@ -930,10 +967,25 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/Config"
-    
-    GetConfigResponse:
+
+    UpsertConfigReq:
       type: object
-      properties: 
+      properties:
+        resourceId:
+          type: string
+          format: string
+          description: 资源ID
+        key:
+          type: string
+          format: string
+          description: 对应的字段名
+        value:
+          type: object
+          description: json格式的键值对数据
+
+    UpsertConfigResponse:
+      type: object
+      properties:
         code:
           type: integer
           format: int64
@@ -942,7 +994,19 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/Config"
-    
+
+    GetConfigResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+          format: string
+        data:
+          $ref: "#/components/schemas/Config"
+
     PageConfigsResponse:
       type: object
       properties:
@@ -975,7 +1039,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/Config"
-    
+
     CursorConfigsResponse:
       type: object
       properties:
@@ -998,7 +1062,7 @@ components:
 
     Config:
       type: object
-      properties: 
+      properties:
         id:
           type: string
           format: string
@@ -1033,9 +1097,9 @@ components:
 
     CreateConfigGroupReq:
       type: object
-      properties: 
+      properties:
         name:
-          type: string 
+          type: string
           format: string
           description: 名称
 
@@ -1050,16 +1114,16 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/ConfigGroup"
-    
+
     UpdateConfigGroupReq:
       type: object
-      properties: 
+      properties:
         id:
           type: string
           format: string
           description: 配置ID
         name:
-          type: string 
+          type: string
           description: 名称
 
     UpdateConfigGroupResponse:
@@ -1076,7 +1140,7 @@ components:
 
     GetConfigGroupResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -1155,7 +1219,7 @@ components:
 
     RetrieveConfigGroupByNameResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -1167,13 +1231,13 @@ components:
 
     ConfigGroup:
       type: object
-      properties: 
+      properties:
         id:
           type: string
           format: string
           description: 配置ID
         name:
-          type: string 
+          type: string
           format: string
           description: 名称
         ctime:
@@ -1187,7 +1251,7 @@ components:
 
     CreateConfigTemplateReq:
       type: object
-      properties: 
+      properties:
         groupId:
           type: string
           format: string
@@ -1215,10 +1279,10 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/ConfigTemplate"
-        
+
     UpdateConfigTemplateReq:
       type: object
-      properties: 
+      properties:
         id:
           type: string
           format: string
@@ -1226,7 +1290,7 @@ components:
         value:
           type: object
           description: json格式的键值对数据
-    
+
     UpdateConfigTemplateResponse:
       type: object
       properties:
@@ -1238,10 +1302,10 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/ConfigTemplate"
-    
+
     GetConfigTemplateResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -1264,7 +1328,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ConfigTemplate"
-    
+
     PageConfigTemplatesResponse:
       type: object
       properties:
@@ -1317,10 +1381,10 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/ConfigTemplate"
-    
+
     RetrieveConfigTemplateByKeyResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -1329,10 +1393,10 @@ components:
           format: string
         data:
           $ref: "#/components/schemas/ConfigTemplate"
-    
+
     BatchRetrieveConfigTemplatesByKeysResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -1341,12 +1405,12 @@ components:
           format: string
         data:
           type: array
-          items: 
+          items:
             $ref: "#/components/schemas/ConfigTemplate"
 
     BatchRetrieveConfigTemplatesByGroupResponse:
       type: object
-      properties: 
+      properties:
         code:
           type: integer
           format: int64
@@ -1355,12 +1419,12 @@ components:
           format: string
         data:
           type: array
-          items: 
+          items:
             $ref: "#/components/schemas/ConfigTemplate"
 
     ConfigTemplate:
       type: object
-      properties: 
+      properties:
         id:
           type: string
           format: string
@@ -1388,14 +1452,14 @@ components:
           type: integer
           format: int64
           description: 更新时间，返回时间戳
-      
+
     PageQuery:
       type: object
-      properties: 
-        filters: 
+      properties:
+        filters:
           type: object
           description: 查询条件，传键值对
-        pageNo: 
+        pageNo:
           type: integer
           format: int32
           description: 页码
@@ -1405,13 +1469,13 @@ components:
           description: 每页数据量
         sort:
           type: array
-          items: 
+          items:
             $ref: "#/components/schemas/SortSpec"
           description: 排序
 
     SortSpec:
       type: object
-      properties: 
+      properties:
         property:
           type: string
           format: string
@@ -1422,7 +1486,7 @@ components:
           description: 排序类型，0默认，1升序，2降序
         ignoreCase:
           type: string
-          format: string 
+          format: string
           description: 是否忽略大小写
 
     DeleteResponse:
@@ -1435,5 +1499,4 @@ components:
           type: string
           format: string
         data:
-          description: "暂时未返回数据"           
-
+          description: "暂时未返回数据"
